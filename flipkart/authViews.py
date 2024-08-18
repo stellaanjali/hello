@@ -21,15 +21,3 @@ def register(request):
         return Response(result, status =status.HTTP_201_CREATED)
     else:
         return Response(result, status =status.HTTP_400_BAD_REQUEST)
-    
-@api_view(['POST'])
-def login(request):
-    email = request.data.get('email')
-    password = request.data.get('password')
-    if not email or not password:
-        return Response({"error": "Enter the email and password"}, status = status.HTTP_400_BAD_REQUEST)
-    result,success = login_user(email,password)
-    if success:
-         return Response(result, status =status.HTTP_200_OK)
-    else:
-        return Response(result, status =status.HTTP_400_BAD_REQUEST)
